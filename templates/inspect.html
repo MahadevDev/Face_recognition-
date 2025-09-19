@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inspect Records</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/styles.css" rel="stylesheet">
+  </head>
+  <body class="p-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Attendance</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="/take">Take Attendance</a></li>
+            <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/inspect">Inspect</a></li>
+          </ul>
+          <form class="d-flex" action="/logout" method="post">
+            <button class="btn btn-outline-light" type="submit">Logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h2 class="mb-3">Inspect Stored Data</h2>
+      <form class="row g-2 mb-3" method="get" action="/inspect">
+        <div class="col-auto">
+          <label for="date" class="col-form-label">Date (MM_DD_YY)</label>
+        </div>
+        <div class="col-auto">
+          <input class="form-control" id="date" name="date" value="{{ date_key }}" placeholder="MM_DD_YY">
+        </div>
+        <div class="col-auto">
+          <label for="roll" class="col-form-label">Roll (optional)</label>
+        </div>
+        <div class="col-auto">
+          <input class="form-control" id="roll" name="roll" value="{{ roll }}" placeholder="e.g. 101">
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-primary" type="submit">Inspect</button>
+        </div>
+        <div class="col-auto">
+          <a class="btn btn-outline-dark" href="/">Back</a>
+        </div>
+      </form>
+
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Roll</th>
+            <th>Time</th>
+            <th>Date Key</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in range(records|length) %}
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ records[i].name if records[i].name is defined else records[i]['name'] }}</td>
+            <td>{{ records[i].roll if records[i].roll is defined else records[i]['roll'] }}</td>
+            <td>{{ records[i].time if records[i].time is defined else records[i]['time'] }}</td>
+            <td>{{ records[i].date_key if records[i].date_key is defined else records[i]['date_key'] }}</td>
+          </tr>
+          {% endfor %}
+          {% if records|length == 0 %}
+          <tr>
+            <td colspan="5" class="text-center text-muted">No records found.</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+  </html>
+

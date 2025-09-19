@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registered Users</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      table { border-collapse: collapse; width: 100%; max-width: 640px; }
+      th, td { border: 1px solid #ddd; padding: 8px; }
+      th { background: #f3f3f3; text-align: left; }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Attendance</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="/take">Take Attendance</a></li>
+            <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+            <li class="nav-item"><a class="nav-link" href="/inspect">Inspect</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/listusers">Users</a></li>
+          </ul>
+          <form class="d-flex" action="/logout" method="post">
+            <button class="btn btn-outline-light" type="submit">Logout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <h2>Registered Users ({{ l }})</h2>
+    <p>Date: {{ datetoday2 }}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Roll</th>
+          <th>Folder</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for idx in range(l) %}
+        <tr>
+          <td>{{ idx + 1 }}</td>
+          <td>{{ names[idx] }}</td>
+          <td>{{ rolls[idx] }}</td>
+          <td>{{ userlist[idx] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p>Total Registered: {{ totalreg }}</p>
+    <p><a href="/">Back to Home</a></p>
+  </body>
+  </html>
+

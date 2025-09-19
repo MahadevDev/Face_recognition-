@@ -1,0 +1,11 @@
+Flask>=2.2,<3.0
+opencv-python>=4.7
+numpy>=1.23
+scikit-learn>=1.2
+pandas>=1.5
+joblib>=1.2
+
+# MongoDB client
+pymongo[srv]>=4.6
+dnspython>=2.4
+

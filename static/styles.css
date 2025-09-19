@@ -1,0 +1,65 @@
+/* Global layout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand { font-weight: 600; }
+
+/* Cards/boxes */
+.card-lite {
+  border-radius: 16px;
+  background: #ffffff;
+  background-image: linear-gradient(135deg, #ffecec 0%, #eaffea 100%);
+  padding: 0;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+.card-lite .card-header {
+  background: #0b4c61;
+  color: #fff;
+  border-radius: 16px 16px 0 0;
+  padding: 10px;
+}
+
+/* Centered thin container */
+.container-narrow {
+  max-width: 220px;
+  margin: 20px auto;
+}
+
+/* Make Add User form elements compact and fit the small box */
+.container-narrow label {
+  font-size: 12px;
+}
+.container-narrow input[type="text"],
+.container-narrow input[type="number"] {
+  font-size: 13px;
+  padding: 6px 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.container-narrow button {
+  width: 100% !important;
+  font-size: 13px !important;
+  padding: 8px 10px !important;
+}
+
+/* Add New User header size and body padding */
+.card-lite .card-header { font-size: 16px; }
+
+/* Login box */
+.login-box {
+  max-width: 360px;
+  margin: 80px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  background-image: linear-gradient(135deg, #ffecec 0%, #eaffea 100%);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+
+/* Tables */
+.table thead th { background: #f3f3f3; }
+
