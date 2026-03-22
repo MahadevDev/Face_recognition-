@@ -6,6 +6,8 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: flask run --host=0.0.0.0 --port=$PORT
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.12
       - key: MONGO_URI
         value: mongodb+srv://mahadevags573:AHvkbkxaUmVZsEzS@madeva1.dry8zrf.mongodb.net/?retryWrites=true&w=majority
       - key: MONGO_DB_NAME
@@ -13,8 +15,8 @@ services:
       - key: MONGO_COLLECTION_NAME
         value: attendance
       - key: SECRET_KEY
-        generateValue: true
+        value: face-recognition-secret-key-2024
       - key: ADMIN_USER
         value: admin
       - key: ADMIN_PASS
-        generateValue: true
+        value: admin123
