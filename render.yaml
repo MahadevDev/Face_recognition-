@@ -7,7 +7,7 @@ services:
     startCommand: python app.py
     envVars:
       - key: MONGO_URI
-        sync: false
+        value: mongodb+srv://mahadevags573:AHvkbkxaUmVZsEzS@madeva1.dry8zrf.mongodb.net/?retryWrites=true&w=majority
       - key: MONGO_DB_NAME
         value: attendance_db
       - key: MONGO_COLLECTION_NAME
