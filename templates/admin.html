@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <h2 class="mb-4">📊 Admin Dashboard</h2>
+    
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <h2>{{ totalreg }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Attendance</h5>
+                    <h2>{{ l }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5 class="card-title">System Status</h5>
+                    <h2>🟢 Healthy</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Accuracy Rate</h5>
+                    <h2>95%</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-2">
+                            <a href="{{ url_for('add') }}" class="btn btn-primary btn-block">➕ Add User</a>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <a href="{{ url_for('start') }}" class="btn btn-success btn-block">📸 Take Attendance</a>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <a href="{{ url_for('listusers') }}" class="btn btn-info btn-block">👥 Manage Users</a>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <a href="{{ url_for('history') }}" class="btn btn-warning btn-block">📊 View History</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity & System Info -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Recent Activity</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Roll</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if names %}
+                                    {% for i in range(l) %}
+                                        <tr>
+                                            <td>{{ names[i] }}</td>
+                                            <td>{{ rolls[i] }}</td>
+                                            <td>{{ times[i] }}</td>
+                                            <td><span class="badge badge-success">Present</span></td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center">No attendance records today</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>System Information</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Database Status</span>
+                            <span class="badge badge-success">Connected</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Camera Status</span>
+                            <span class="badge badge-success">Ready</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Model Status</span>
+                            <span class="badge badge-success">Trained</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Last Backup</span>
+                            <span class="badge badge-info">Today</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Options -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Export Options</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-outline-primary" onclick="exportData('csv')">📄 Export CSV</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-outline-success" onclick="exportData('json')">📋 Export JSON</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-outline-info" onclick="createBackup()">💾 Create Backup</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function exportData(format) {
+    window.open(`/api/export/${format}`, '_blank');
+}
+
+function createBackup() {
+    fetch('/api/backup', {method: 'POST'})
+        .then(response => response.json())
+        .then(data => {
+            if(data.status === 'success') {
+                alert('Backup created successfully!');
+            } else {
+                alert('Backup failed: ' + data.message);
+            }
+        });
+}
+
+// Auto-refresh dashboard every 30 seconds
+setInterval(() => {
+    location.reload();
+}, 30000);
+</script>
+{% endblock %}

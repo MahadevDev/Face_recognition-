@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: face-recognition-app
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB_NAME
+        value: attendance_db
+      - key: MONGO_COLLECTION_NAME
+        value: attendance
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASS
+        generateValue: true

@@ -1,65 +1,274 @@
-/* Global layout */
+/* ===== Global Styles ===== */
+:root {
+    --primary-color: #0b4c61;
+    --secondary-color: #f8f9fa;
+    --accent-color: #17a2b8;
+    --text-color: #212529;
+    --light-gray: #f8f9fa;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Base Styles */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.navbar-brand { font-weight: 600; }
-
-/* Cards/boxes */
-.card-lite {
-  border-radius: 16px;
-  background: #ffffff;
-  background-image: linear-gradient(135deg, #ffecec 0%, #eaffea 100%);
-  padding: 0;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
 }
 
-.card-lite .card-header {
-  background: #0b4c61;
-  color: #fff;
-  border-radius: 16px 16px 0 0;
-  padding: 10px;
+/* Layout */
+.container {
+    max-width: 1200px;
+    padding: 0 15px;
 }
 
-/* Centered thin container */
-.container-narrow {
-  max-width: 220px;
-  margin: 20px auto;
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.8rem 0;
 }
 
-/* Make Add User form elements compact and fit the small box */
-.container-narrow label {
-  font-size: 12px;
-}
-.container-narrow input[type="text"],
-.container-narrow input[type="number"] {
-  font-size: 13px;
-  padding: 6px 8px;
-  width: 100%;
-  box-sizing: border-box;
-}
-.container-narrow button {
-  width: 100% !important;
-  font-size: 13px !important;
-  padding: 8px 10px !important;
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
 }
 
-/* Add New User header size and body padding */
-.card-lite .card-header { font-size: 16px; }
+.navbar-brand i {
+    margin-right: 0.5rem;
+}
 
-/* Login box */
-.login-box {
-  max-width: 360px;
-  margin: 80px auto;
-  padding: 20px;
-  border-radius: 12px;
-  background: #ffffff;
-  background-image: linear-gradient(135deg, #ffecec 0%, #eaffea 100%);
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border-bottom: none;
+    padding: 1rem 1.25rem;
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: var(--transition);
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #0a3d4d;
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Forms */
+.form-control, .form-select {
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid #dee2e6;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(23, 162, 184, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #495057;
 }
 
 /* Tables */
-.table thead th { background: #f3f3f3; }
+.table {
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 0;
+}
 
+.table thead th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.25rem;
+    border: none;
+}
+
+.table tbody td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    border-color: #f1f1f1;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Login Page */
+.login-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Alerts */
+.alert {
+    border-radius: var(--border-radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    border: none;
+}
+
+.alert-dismissible .btn-close {
+    padding: 1rem 1.25rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem 0;
+    margin-top: auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .table-responsive {
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+    }
+}
+
+/* Utility Classes */
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.rounded {
+    border-radius: var(--border-radius) !important;
+}
+
+.mt-6 {
+    margin-top: 4rem;
+}
+
+.mb-6 {
+    margin-bottom: 4rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

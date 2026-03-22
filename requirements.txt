@@ -9,3 +9,7 @@ joblib>=1.2
 pymongo[srv]>=4.6
 dnspython>=2.4
 
+# Additional features
+pillow>=9.0
+openpyxl>=3.0
+
