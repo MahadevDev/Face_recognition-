@@ -3,7 +3,6 @@ services:
     name: face-recognition-app
     env: python
     plan: free
-    rootDir: .
     buildCommand: pip install -r requirements.txt
     startCommand: python app.py
     envVars:
